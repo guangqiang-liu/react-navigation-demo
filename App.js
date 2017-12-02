@@ -1,57 +1,51 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React, {Component} from 'react'
+import {View, Platform} from 'react-native'
+import {Button} from 'react-native-elements'
+import {StackNavigator} from 'react-navigation'
+import {Navigator} from './plainNavigation/StackNavigator'
+import OverallNavigation from './src/App'
+import ReduxNavigation from './reduxNavigation'
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+const Index = ({ navigation }) => (
+  <View style={{flex: 1, marginTop: 50}}>
+    <Button
+      buttonStyle={{marginVertical: 20}}
+      title={'react-navigation导航组件的基本使用方式练习'}
+      onPress={() => navigation.navigate('Demo1')}
+    />
+    <Button
+      buttonStyle={{marginVertical: 20}}
+      title={'react-navigation导航组件的抽屉等嵌套使用方式练习'}
+      onPress={() => navigation.navigate('Demo2')}
+    />
+    <Button
+      buttonStyle={{marginVertical: 20}}
+      title={'react-navigation导航组件与Redux框架结合的使用练习'}
+      onPress={() => navigation.navigate('Demo3')}
+    />
+  </View>
+)
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-export default class App extends Component<{}> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
+const RouteConfigs = {
+  Index: {
+    screen: Index
+  },
+  Demo1: {
+    screen: Navigator
+  },
+  Demo2: {
+    screen: OverallNavigation,
+  },
+  Demo3: {
+    screen: ReduxNavigation
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+const StackNavigatorConfig = {
+  headerMode: 'none',
+  mode: Platform.OS === 'ios' ? 'modal' : 'card'
+}
+
+const MainScreen = StackNavigator(RouteConfigs, StackNavigatorConfig)
+
+export default MainScreen
