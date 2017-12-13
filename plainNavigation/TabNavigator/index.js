@@ -15,6 +15,9 @@ const RouteConfigs = {
     screen: Home,
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: 'Home',
+      tabBarOnPress: () => {
+        console.log('hookHome')
+      },
       tabBarIcon: ({ focused, tintColor }) => (
         <Ionicons
           name={focused ? 'ios-home' : 'ios-home-outline'}
@@ -27,6 +30,9 @@ const RouteConfigs = {
     screen: People,
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: 'People',
+      tabBarOnPress: () => {
+        console.log('hookPeople')
+      },
       tabBarIcon: ({ focused, tintColor }) => (
         <Ionicons
           name={focused ? 'ios-people' : 'ios-people-outline'}
@@ -39,6 +45,9 @@ const RouteConfigs = {
     screen: Chat,
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: 'Chat',
+      tabBarOnPress: () => {
+        alert('HookChatTab')
+      },
       tabBarIcon: ({ focused, tintColor }) => (
         <Ionicons
           name={focused ? 'ios-chatboxes' : 'ios-chatboxes-outline'}
@@ -51,6 +60,9 @@ const RouteConfigs = {
     screen: Setting,
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: 'Settings',
+      tabBarOnPress: () => {
+        console.log('hookHome')
+      },
       tabBarIcon: ({ focused, tintColor }) => (
         <Ionicons
           name={focused ? 'ios-settings' : 'ios-settings-outline'}
