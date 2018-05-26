@@ -7,21 +7,21 @@ import {Button} from 'react-native-elements'
 export default class Home7 extends Component {
 
   static navigationOptions = ({navigation, screenProps}) => ({
-      title: navigation.state.params.title,
-      headerRight: (
-        <Button
-          title={'changeTitle'}
-          onPress={() => navigation.setParams({title: 'newTitle'})}
-        />
-      )
-    }
+        title: navigation.state.params.title,
+        headerRight: (
+            <Button
+                title={'changeTitle'}
+                onPress={() => navigation.setParams({title: 'newTitle'})}
+            />
+        )
+      }
   )
 
   render() {
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Home7</Text>
-      </View>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <Text>Home7</Text>
+        </View>
     )
   }
 }

@@ -46,6 +46,56 @@ class Home extends Component {
             title={'跳转到Setting2界面'}
             onPress={() => this.props.navigation.navigate('Setting2')}
           />
+          <Button
+              buttonStyle={{marginVertical: 10}}
+              title={'hook TabBar的点击事件'}
+              onPress={() => this.props.navigation.navigate('HookTabBar')}
+          />
+          <Button
+              buttonStyle={{marginVertical: 10}}
+              title={'Android 物理返回键处理'}
+              onPress={() => this.props.navigation.navigate('HookTabBar')}
+          />
+          <Button
+              buttonStyle={{marginVertical: 10}}
+              title={'navigator与tabBar嵌套'}
+              onPress={() => this.props.navigation.navigate('HookTabBar')}
+          />
+          <Button
+              buttonStyle={{marginVertical: 10}}
+              title={'tabBar上添加badge'}
+              onPress={() => this.props.navigation.navigate('Badge')}
+          />
+          <Button
+              buttonStyle={{marginVertical: 10}}
+              title={'返回时pop多层页面'}
+              onPress={() => this.props.navigation.navigate('Back1')}
+          />
+          <Button
+              buttonStyle={{marginVertical: 10}}
+              title={'返回pop到指定页面'}
+              onPress={() => this.props.navigation.navigate('Back1')}
+          />
+          <Button
+              buttonStyle={{marginVertical: 10}}
+              title={'navigator与抽屉嵌套使用'}
+              onPress={() => this.props.navigation.navigate('HookTabBar')}
+          />
+          <Button
+              buttonStyle={{marginVertical: 10}}
+              title={'导航title 在Android 平台上不居中显示'}
+              onPress={() => this.props.navigation.navigate('HookTabBar')}
+          />
+          <Button
+              buttonStyle={{marginVertical: 10}}
+              title={'双击物理键，退出app'}
+              onPress={() => this.props.navigation.navigate('HookTabBar')}
+          />
+          <Button
+              buttonStyle={{marginVertical: 10}}
+              title={'懒加载tabbar上数据'}
+              onPress={() => this.props.navigation.navigate('HookTabBar')}
+          />
         </ScrollView>
       </View>
     )
