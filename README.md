@@ -1,5 +1,14 @@
-# react-native-react-navigation-demo
-对导航组件react-navigation的使用讲解
+# react-navigation导航组件使用详解
+
+**注意了，如果有小伙伴们发现运行作者提供的react-navigation示例项目报如下的错误，可能是大家使用了 `yarn install ` 命令，解决这个错误的办法就是将nodemodules删除，然后使用`npm install `命令来安装，最后使用 `npm start` 来起服务，应该就不报错了，如果还有报错，请加作者交流群，将问题反馈到群里，谢谢。**
+
+![](http://ovyjkveav.bkt.clouddn.com/18-6-4/76625586.jpg)
+
+# RN技术总结
+* 作者React Native开源项目OneM地址(按照企业开发标准搭建框架完成开发的)：**[https://github.com/guangqiang-liu/OneM](https://github.com/guangqiang-liu/OneM)** (欢迎小伙伴们 **star**)
+* 作者简书主页：包含60多篇RN开发相关的技术文章[http://www.jianshu.com/u/023338566ca5](http://www.jianshu.com/u/023338566ca5) (欢迎小伙伴们：**多多关注**，**多多点赞**)
+* 作者React Native QQ技术交流群：**620792950** 欢迎小伙伴进群交流学习
+* 友情提示：**在开发中有遇到RN相关的技术问题，欢迎小伙伴加入交流群（620792950），在群里提问、互相交流学习。交流群也定期更新最新的RN学习资料给大家，谢谢支持！**
 
 # 前言
 > react-navigation 组件是官方推荐使用的导航组件，功能和性能都远远的优于之前的Navigator组件，公司的RN项目最早是使用的`react-native-router-flux`导航组件，因为那个时候`react-navigation` 组件还没有出来，在使用了`react-navigation`后，感觉比react-native-router-flux组件有更加强大的功能，体验也略好些，这两个导航组件是目前star最多的导航组件，并且他们都完美的支持与Redux框架的结合使用，推荐小伙伴们两个组件都尝试使用下。
@@ -7,17 +16,22 @@
 # react-navigation官方地址
 [react-navigation](https://github.com/react-community/react-navigation)
 
-# 简书
+# react-navigation Demo地址
+[https://github.com/guangqiang-liu/react-navigation-demo](https://github.com/guangqiang-liu/react-navigation-demo)
+
+# react-navigation简书讲解地址
+[http://www.jianshu.com/p/5c070a302192](http://www.jianshu.com/p/5c070a302192)
+
 Demo示例讲解包含三部分
 
-* react-navigation中最常用的用法讲解
+* react-navigation中最常用的基础用法讲解
 * react-navigation中StackNavigator与TabNavigator和DrawerNavigator的混合嵌套使用
 * react-navigation与Redux框架结合使用示例
 
-[http://www.jianshu.com/p/5c070a302192](http://www.jianshu.com/p/5c070a302192)
-
 # Demo效果图
 ![gif](http://upload-images.jianshu.io/upload_images/6342050-f286f704995f5081.jpg?imageMogr2/auto-orient/strip)
+
+**注意： 有小伙伴说Demo运行报错，这里大家需要注意，Demo clone下来之后，我们先要执行 `npm install` 操作， 然后在执行 `react-native link`,最后在 执行 `npm start` 来运行项目，如果还有其他的报错信息，欢迎进群提出报错信息**
 
 # 对Redux用法不熟悉的同学们，请看作者的Redux入门讲解
 [http://www.jianshu.com/p/faa98d8bd3fa](http://www.jianshu.com/p/faa98d8bd3fa)
@@ -47,41 +61,52 @@ StackNavigator函数中有两个参数：
 
 ```
 const RouteConfigs = {
- 	Home: { screen: Tabs },
-   	HomeTwo: {
-        screen: HomeTwo,  // screen属性是必须的, 其他都是非必须
-        path:'app/homeTwo', // 使用url导航时用到, 如 web app 和 Deep Linking
-        navigationOptions: {}  // 此处设置了, 会覆盖组件内的`static navigationOptions`设置，具体参数详见下文
-    },
-    HomeThree: { screen: HomeThree },
-    HomeFour: { screen: HomeFour }
-   }
+  Home: {
+    screen: TabBar // screen属性为必须配置属性
+  },
+  Home2: {
+    screen: Home2,
+    path:'app/Home2',
+    navigationOptions: {
+      title: '这是在RouteConfigs中设置的title',
+      headerTitleStyle: {
+        fontSize: 10
+      }
+    }
+  },
+  Home3: { screen: Home3 },
+  Home4: { screen: Home4 },
+  Home5: {screen: Home5},
+  Home6: {screen: Home6},
+  Home7: {screen: Home7},
+  Setting2: {screen: Setting2},
+  Setting3: {screen: Setting3},
+}
 ```
 
 *配置StackNavigatorConfig*
 
 ```
 const StackNavigatorConfig = {
-    initialRouteName: 'Home',
-    initialRouteParams: {initPara: '初始页面参数'},
-    navigationOptions: {
-        title: '标题',
-        headerTitleStyle: {fontSize: 18, color: '#666666'},
-        headerStyle: {height: 48, backgroundColor: '#'},
-    },
-    paths: 'page/main',
-    mode: 'card',
-    headerMode: 'screen',
-    cardStyle: {backgroundColor: "#ffffff"},
-    transitionConfig: (() => ({
-        screenInterpolator: CardStackStyleInterpolator.forHorizontal,
-    })),
-    onTransitionStart: (() => {
-        console.log('页面跳转动画开始');
-    }),
-    onTransitionEnd: (() => {
-        console.log('页面跳转动画结束');
-    }),
+  initialRouteName: 'Home',
+  initialRouteParams: {initPara: '初始页面参数'},
+  navigationOptions: {
+    title: '标题',
+    headerTitleStyle: {fontSize: 18, color: 'red'},
+    headerStyle: {height: 49},
+  },
+  paths: 'page/main',
+  mode: 'card',
+  headerMode: 'screen',
+  cardStyle: {backgroundColor: "#ffffff"},
+  transitionConfig: (() => ({
+  })),
+  onTransitionStart: (() => {
+    console.log('页面跳转动画开始')
+  }),
+  onTransitionEnd: (() => {
+    console.log('页面跳转动画结束')
+  }),
 }
 ```
 
@@ -139,10 +164,10 @@ export default class Main extends Component {
 * `headerPressColorAndroid `：Android 5.0 以上MD风格的波纹颜色
 * `gesturesEnabled `：否能侧滑返回，iOS 默认 true ， Android 默认 false
 
-**navigationOptions配置参数**
+**navigationOptions**
 
 ```
-// 屏幕导航的默认选项, 也可以在组件内用static navigationOptions 设置(会覆盖此处的设置)
+// StackNavigatorConfig中的navigationOptions属性也可以在组件内用static navigationOptions 设置(会覆盖此处的设置)
 navigationOptions: { 
         header: {  // 导航栏相关设置项
             backTitle: '返回',  // 左上角返回键文字
@@ -161,30 +186,39 @@ navigationOptions: {
 
 注意：
 
-* 我们可以在`RouteConfigs `中配置路由时配置 navigationOptions，我们也可以在页面配置navigationOptions
-* 在页面里面采用静态的方式配置 navigationOptions 中的属性，会覆盖StackNavigator函数中`RouteConfigs `和`StackNavigatorConfig `对象中的navigationOptions属性里面的对应属性
+* 我们也可以在`RouteConfigs `中配置 navigationOptions属性，我们也可以在单独页面配置navigationOptions
+* 在页面里面采用静态的方式配置 navigationOptions属性，会覆盖StackNavigator函数中`RouteConfigs `和`StackNavigatorConfig `对象中的navigationOptions属性里面的对应属性
 * navigationOptions中属性的优先级是：页面中静态配置 > RouteConfigs > StackNavigatorConfig 
 
-*在`RouteConfigs `中配置*
+*在`RouteConfigs `中配置 navigationOptions*
 
 ```
 const RouteConfigs = {
- 	Home: { screen: Tabs },
-   	HomeTwo: {
-        screen: HomeTwo,  // 必须, 其他都是非必须
-        path:'app/homeTwo', 使用url导航时用到, 如 web app 和 Deep Linking
-        // 此处设置了, 会覆盖组件内的`static navigationOptions`设置. 具体参数详见下文
-        navigationOptions: {
-        	headerTitle: 'Start'
-        }
-    },
-    HomeThree: { screen: HomeThree },
-    HomeFour: { screen: HomeFour }
-   }
+  Home: {
+    screen: TabBar
+  },
+  Home2: {
+    screen: Home2,
+    path:'app/Home2',
+   // 此处设置了, 会覆盖组件内的`static navigationOptions`设置. 具体参数详见下文
+    navigationOptions: {
+      title: '这是在RouteConfigs中设置的title',
+      headerTitleStyle: {
+        fontSize: 10
+      }
+    }
+  },
+  Home3: { screen: Home3 },
+  Home4: { screen: Home4 },
+  Home5: {screen: Home5},
+  Home6: {screen: Home6},
+  Home7: {screen: Home7},
+  Setting2: {screen: Setting2},
+  Setting3: {screen: Setting3},
 }
 ```
 
-*在具体页面中配置*
+*在具体页面中配置 navigationOptions*
 
 ```
 import {StackNavigator, TabNavigator} from "react-navigation"
@@ -203,7 +237,7 @@ export default class Main extends Component {
     cardStack: {
         gesturesEnabled: false  // 是否可以右滑返回
     }
-	}
+}
 
 	// 或这样
 	static navigationOptions = {
@@ -258,54 +292,54 @@ export default class Main extends Component {
 
 ```
 const RouteConfigs = {
-    Home: {
-        screen: Home,
-         navigationOptions: ({ navigation }) => ({
-            tabBarLabel: 'Home',
-            tabBarIcon: ({ focused, tintColor }) => (
-               <Ionicons
-  					name={focused ? 'ios-people' : 'ios-people-outline'}
- 					size={26}
-  					style={{ color: tintColor }}/>
-            )
-        }),
-    },
-    People: {
-        screen: People,
-         navigationOptions: ({ navigation }) => ({
-            tabBarLabel: 'People',
-            tabBarIcon: ({ focused, tintColor }) => (
-               <Ionicons
-  					name={focused ? 'ios-people' : 'ios-people-outline'}
- 					size={26}
-  					style={{ color: tintColor }}/>
-            )
-        }),
-    },
-    Chat: {
-        screen: Chat,
-         navigationOptions: ({ navigation }) => ({
-            tabBarLabel: 'Chat',
-            tabBarIcon: ({ focused, tintColor }) => (
-               <Ionicons
-  					name={focused ? 'ios-people' : 'ios-people-outline'}
- 					size={26}
-  					style={{ color: tintColor }}/>
-            )
-        }),
-    },
-    Settings: {
-        screen: Settings,
-         navigationOptions: ({ navigation }) => ({
-            tabBarLabel: 'Settings',
-            tabBarIcon: ({ focused, tintColor }) => (
-               <Ionicons
-  					name={focused ? 'ios-people' : 'ios-people-outline'}
- 					size={26}
-  					style={{ color: tintColor }}/>
-            )
-        }),
-    }
+  Home: {
+    screen: Home,
+    navigationOptions: ({ navigation }) => ({
+      tabBarLabel: 'Home',
+      tabBarIcon: ({ focused, tintColor }) => (
+        <Ionicons
+          name={focused ? 'ios-home' : 'ios-home-outline'}
+          size={26}
+          style={{ color: tintColor }}/>
+      )
+    }),
+  },
+  People: {
+    screen: People,
+    navigationOptions: ({ navigation }) => ({
+      tabBarLabel: 'People',
+      tabBarIcon: ({ focused, tintColor }) => (
+        <Ionicons
+          name={focused ? 'ios-people' : 'ios-people-outline'}
+          size={26}
+          style={{ color: tintColor }}/>
+      )
+    }),
+  },
+  Chat: {
+    screen: Chat,
+    navigationOptions: ({ navigation }) => ({
+      tabBarLabel: 'Chat',
+      tabBarIcon: ({ focused, tintColor }) => (
+        <Ionicons
+          name={focused ? 'ios-chatboxes' : 'ios-chatboxes-outline'}
+          size={26}
+          style={{ color: tintColor }}/>
+      )
+    }),
+  },
+  Setting: {
+    screen: Setting,
+    navigationOptions: ({ navigation }) => ({
+      tabBarLabel: 'Settings',
+      tabBarIcon: ({ focused, tintColor }) => (
+        <Ionicons
+          name={focused ? 'ios-settings' : 'ios-settings-outline'}
+          size={26}
+          style={{ color: tintColor }}/>
+      )
+    }),
+  }
 }
 ```
 
@@ -598,7 +632,6 @@ const DrawerNavigatorConfigs = {
     tabBarOptions: {}
 };
 
-
 const Drawer = DrawerNavigator(RouteConfigs, DrawerNavigatorConfigs)
 
 const StackRouteConfigs = {
@@ -618,7 +651,7 @@ const StackNavigatorConfigs = {
 
 const Navigator = StackNavigator(StackRouteConfigs, StackNavigatorConfigs)
 
-export default class MainComponent extends Component {
+export default class Main extends Component {
     render() {
         return (
             <Navigator/>
@@ -628,49 +661,108 @@ export default class MainComponent extends Component {
 ```
 
 # navigation
-在StackNavigator中注册过的组件都有navigation这个属性，navigation有5个参数
+在StackNavigator中注册过的组件都有navigation这个属性，navigation有5个主要参数
 
 * navigate
-* goBack
 * state
 * setParams
+* goBack
 * dispatch
 
 我们平时使用react-navigation作为导航组件来开发时，经常使用到的也就是这5个属性的功能
 
 **navigate**
 
-*push下一个页面*
-
-`this.props.navigation.navigate(‘Two’, { name: ‘two’ })`
-
-navigate 函数可以接受三个参数
-
-* `routeName `：注册过的目标路由名称
-* `params `：传递的参数，传递到下一级界面
-* `action `：如果该界面是一个navigator的话，将运行这个sub-action
-
-**goBack**
-
-返回页面，可以不传参数，也可以传参数，还可以传 null，使用方式如下：
+*导航到下一个页面*
 
 ```
-this.props.navigation.goBack();       // 回退到上一个页面
-this.props.navigation.goBack(null);   // 回退到任意一个页面
-this.props.navigation.goBack('Home'); // 回退到Home页面
+<Button
+            buttonStyle={{marginVertical: 10}}
+            title={'跳转到Home2界面'}
+            onPress={() => this.props.navigation.navigate('Home2')}
+          />
 ```
+
+* 导航到下一个页面并传递参数
+
+```
+<Button
+            buttonStyle={{marginVertical: 10}}
+            title={'跳转到Home3界面，并传递参数'}
+            // 这里传递了参数`id`
+            onPress={() => this.props.navigation.navigate('Home3', {id: 123})}
+          />
+```
+
+navigation中的navigate函数可以接受三个参数
+
+* `routeName `：注册过的目标路由名称，也就是准备跳转到的页面路由地址(例如上面的`Home3`)
+* `params `：跳转到下一个页面，传递的参数(例如上面的`id`)
+* `action `：下文有讲到
 
 **state**
 
-state 里面包含有传递过来的三个参数 params、key 、routeName
+`state`属性包含有传递过来的三个参数 params、key 、routeName
 
 * `routeName `：注册过的目标路由名称
 * `key `：路由身份标识
-* `params `：参数
+* `params `：跳转时传递的参数
+
+获取state中的参数：`this.props.navigation.state.params.id` 这样就能拿到上一个页面传递的参数：`id`
 
 **setParams**
 
-`this.props.navigation.setParams`: 该方法允许界面更改router中的参数，可以用来动态的更改导航栏的内容。比如可以用来更新头部的按钮或者标题等
+`this.props.navigation.setParams()`: 该方法允许界面更改router中的参数，可以用来动态的更改导航栏的内容。比如可以用来更新头部的按钮或者标题等
+
+使用场景：重写导航按钮的返回按钮，自定义返回事件
+
+```
+export default class Home5 extends Component {
+
+  static navigationOptions = ({navigation, screenProps}) => ({
+      title: 'Home5',
+      headerLeft: (
+        <Button
+          title={'customAction'}
+          onPress={() => navigation.state.params.customAction()}
+        />
+      )
+    }
+  )
+
+  componentDidMount() {
+    const {setParams} = this.props.navigation
+    setParams({customAction: () => this.tempAction()})
+  }
+
+  tempAction() {
+    alert('在导航栏按钮上调用Component内中的函数，因为static修饰的函数为静态函数，内部不能使用this')
+  }
+
+  render() {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Home5</Text>
+      </View>
+    )
+  }
+}
+```
+
+**goBack**
+
+退出当前页面，返回到上一个页面，可以不传参数，也可以传参数，还可以传 null
+
+* this.props.navigation.goBack();      // 回退到上一个页面
+* this.props.navigation.goBack(null);   // 回退到任意一个页面
+* this.props.navigation.goBack('Home');  // 回退到Home页面
+
+```
+<Button
+      title={'返回上一页面'}
+      onPress={() => goBack()}
+        />
+```
 
 **dispatch**
 
@@ -728,6 +820,7 @@ import { NavigationActions } from 'react-navigation'
 ```
 NavigationActions.back()
 ```
+
 * Init
 
 ```
@@ -739,53 +832,110 @@ export default (state = initialState, actions) => {
 }
 ```
 
-# 页面跳转、页面传值、参数回调
+*注意：* 如果你的项目中使用了与Redux框架结合，这里的dispatch就可以派发任何你想dispatch的Action了
 
-**跳转，传值**
+使用场景：[Counter 计数器](https://github.com/guangqiang-liu/react-navigation-demo)
 
 ```
-const {navigate} = this.props.navigation
-  <TouchableHighlight 
-  onPress={()=>{ navigate('PlanDetail',{name:'leslie', id:100})}}
-  >
+class Counter extends Component {
+
+  static navigationOptions = () => ({
+    title: 'Counter加减计数器'
+  })
+
+  render() {
+    const {dispatch} = this.props.navigation
+    return (
+      <View>
+        <Text>Counter</Text>
+        <Text style={{marginVertical: 20, color: 'red', fontSize: 30}}>{this.props.counterValue}</Text>
+        <Button
+          buttonStyle={{marginVertical: 10}}
+          title={'+'}
+          onPress={() => dispatch(increaseAction())}
+        />
+        <Button
+          buttonStyle={{marginVertical: 10}}
+          title={'-'}
+          onPress={() => dispatch(decreaseAction())}
+        />
+      </View>
+    )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    counterValue: state.home.counter.counterValue
+  }
+}
+
+export default connect(mapStateToProps)(Counter)
+```
+
+# 常用功能：页面跳转、页面传值、参数回调
+
+**页面跳转与传值**
+
+```
+          <Button
+            buttonStyle={{marginVertical: 10}}
+            title={'跳转到Home2界面'}
+            onPress={() => this.props.navigation.navigate('Home2')}
+          />
+          <Button
+            buttonStyle={{marginVertical: 10}}
+            title={'跳转到Home3界面，并传递参数'}
+            onPress={() => this.props.navigation.navigate('Home3', {id: 123})}
+          />
 ```
 
 在下一界面接收参数，通过`this.props.navigation.state.params`接收参数
 
 ```
-export default class Home1 extends Component {
-      static navigationOptions = {
-          // title 可以这样设置成一个函数， state 会自动传过来
-          title: ({state}) => `${state.params.name}`,
-      };
+export default class Home3 extends Component {
 
-      componentDidMount() {
-          const {params} = this.props.navigation.state;
-          const id = params.id
-      }
-    }
+  render() {
+    const {navigate} = this.props.navigation
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Home3</Text>
+        <Text style={{marginVertical: 20}}>{`Home界面传递的参数为：${this.props.navigation.state.params.id}`}</Text>
+        <Button
+          buttonStyle={{marginVertical: 10}}
+          title={'跳转到Home4界面'}
+          onPress={() => navigate('Home4')}
+        />
+      </View>
+    )
+  }
+}
 ```
 
 **回调传参**
 
-当前界面进行跳转
+当前界面进行跳转，并传递参数
 
 ```
-navigate('Detail', {
-   // 跳转的时候携带一个参数去下个页面
-   callback: (data)=>{
-         console.log(data)
-     }
-  })
+          <Button
+            buttonStyle={{marginVertical: 10}}
+            title={'跳转到Home6界面，回调传参'}
+            onPress={() => this.props.navigation.navigate('Home6',{callback: (response) => alert(response)})}
+          />
 ```
 
-下一界面在返回之前执行函数回调传参
+下一界面在返回之前执行函数回调传参给上一个页面
 
 ```
-const {navigate, goBack, state} = this.props.navigation
-// 在goBack之前,将上个页面的方法取到,并回传参数,这样回传的参数会重走render方法
-state.params.callback('回调参数')
-goBack()
+    const {state, goBack} = this.props.navigation
+
+        <Button
+          title={'回调传参'}
+          onPress={() => {
+            state.params.callback && state.params.callback('这是回调参数')
+            goBack()
+          }}
+        />
 ```
 
 # DeepLink
@@ -809,7 +959,6 @@ iOS平台需要额外配置
 js组件在注册路由时设置唯一的路径path, 例如Home2: { screen: Home2, path:'home/Home2'}
 
 在手机浏览器访问OneM://home/Home2, 弹窗选择打开, 就可以打开OneM app并进到Home2页面了
-
 
 # 开发中遇到的问题及注意事项
 * 默认DrawerView不可滚动。要实现可滚动视图，必须使用contentComponent自定义容器
@@ -878,34 +1027,36 @@ title: {
 当我们在头部设置左右按钮时，肯定避免不了要设置按钮的单击事件，但是此时会有一个问题，navigationOptions是被修饰为static类型的，所以我们在按钮的onPress的方法中不能直接通过this来调用Component中的方法。如何解决呢？在官方文档中，作者给出利用设置params的思想来动态设置头部标题。那么我们可以利用这种方式，将单击回调函数以参数的方式传递到params，然后在navigationOption中利用navigation来取出设置到onPress即可：
 
 ```
-componentDidMount () {  
-      /**  
-       * 将单击回调函数作为参数传递  
-       */  
-      this.props.navigation.setParams({  
-              switch: () => this.switchView()  
-      });  
-  }  
-```
+export default class Home5 extends Component {
 
-```
-/**  
- * 切换视图  
- */  
-switchView() {  
-    alert('切换')  
-}  
-```
+  static navigationOptions = ({navigation, screenProps}) => ({
+      title: 'Home5',
+      headerRight: (
+        <Button
+          title={'customAction'}
+          onPress={() => navigation.state.params.customAction()}
+        />
+      )
+    }
+  )
 
-```
-static navigationOptions = ({navigation,screenProps}) => ({  
-    headerTitle: '企业服务',  
-    headerTitleStyle: CommonStyles.headerTitleStyle,  
-    headerRight: (  
-        <NavigatorItem icon={ Images.ic_navigator } onPress={ ()=> navigation.state.params.switch() }/>  
-    ),  
-    headerStyle: CommonStyles.headerStyle  
-})
+  componentDidMount() {
+    const {setParams} = this.props.navigation
+    setParams({customAction: () => this.tempAction()})
+  }
+
+  tempAction() {
+    alert('在导航栏按钮上调用Component内中的函数，因为static修饰的函数为静态函数，内部不能使用this')
+  }
+
+  render() {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Home5</Text>
+      </View>
+    )
+  }
+}
 ```
 
 * 结合BackHandler处理返回和点击返回键两次退出App效果 
@@ -1030,8 +1181,183 @@ export default function<S: *>(navigation: NavigationProp<S, NavigationAction>) {
 }
 ```
 
+# 待补充问题
+* hook tabBar上点击事件
+* Android物理返回键处理
+* navigator与tabBar嵌套
+* tabBar上添加badge
+* pop多层页面
+* pop到指定页面
+* navigator与抽屉嵌套使用
+* 导航title 在Android 平台上不居中显示
+* 双击物理键，退出app
+* 懒加载tabbar上数据
+
+
+# 针对上面的待补充问题，下面来逐一解答
+* hook tabBar上点击事件
+
+> 有时我们点击tabBar上的tab来切换页面，但是在切换页面之前我们想先做一些逻辑处理，然后在切换到tab页面，这时我们就需要先hook到这个tab的点击事件，下面代码块就是告诉你如何hook到tab的点击事件，处理完事件在打开tab页面，这个使用具体使用方式在示例Demo中都有实际使用，不清楚的同学们直接去运行示例项目了解即可
+
+```
+Chat: {
+    screen: Chat,
+    navigationOptions: ({ navigation }) => ({
+      tabBarLabel: 'Chat',
+      tabBarOnPress: () => {
+        Alert.alert(
+            '注意！',
+            '这里做了hook tabBar的点击事件操作，我们可以hook到这个点击事件，处理我们想要处理的业务后再打开 Chat这个页面',
+            [
+              {text: '打开tab页面', onPress: () => navigation.navigate('Chat')},
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+            ],
+            { cancelable: false }
+        )
+      },
+      tabBarIcon: ({ focused, tintColor }) => (
+        <Ionicons
+          name={focused ? 'ios-chatboxes' : 'ios-chatboxes-outline'}
+          size={26}
+          style={{ color: tintColor }}/>
+      )
+    }),
+  },
+```
+
+* Android物理返回键处理（待更新）
+
+* navigator与tabBar嵌套
+
+> navigator与tabBar嵌套 具体的结合使用方式示例Demo中有给出具体示例，这个同学们直接运行示例Demo查看即可
+
+* tabBar上添加badge
+
+> 之前有不少同学问我，怎么给一个tabBar设置badge，前段时间由于太忙，一直没有去处理这个问题，后面去实现了下自定义badge，感觉还是挺简单的，因为navigation的tabBarItem本来就是支持自定义的，既然能够自定义，那实现badge自然也是可行的了，下面就是具体实现代码块
+
+```
+People: {
+    screen: People,
+    navigationOptions: ({ navigation }) => ({
+      tabBarLabel: 'People',
+      tabBarIcon: ({ focused, tintColor }) => (
+          <View style={{position: 'absolute', top: -10}}>
+            <Ionicons
+                name={focused ? 'ios-people' : 'ios-people-outline'}
+                size={26}
+                style={{ color: tintColor }}/>
+            <View style={{backgroundColor: 'red', position: 'absolute', right: -10, top: -5, height: 15, width: 20, borderRadius: 8, overflow: 'hidden'}}>
+              <Text style={{fontSize: 12, textAlign: 'center'}}>10</Text>
+            </View>
+          </View>
+      )
+    }),
+  },
+```
+
+* pop多层页面
+
+> 有时候我们在开发的时候，难免会遇到在点击返回按钮的时候，想直接返回到指定的某一个页面，而不是返回上一级页面，这时我们就需要对goback(）函数做些处理了，具体的代码实现如下
+
+```
+const Navigator = StackNavigator(RouteConfigs, StackNavigatorConfig)
+
+const defaultStateAction = Navigator.router.getStateForAction;
+
+Navigator.router.getStateForAction = (action, state) => {
+  if (state && action.key && action.type === 'Navigation/BACK') {
+    const desiredRoute = state.routes.find((route) => route.routeName === action.key)
+    if (desiredRoute) {
+      const index = state.routes.indexOf(desiredRoute)
+      const finalState = {
+        ...state,
+        routes: state.routes.slice(0, index + 1),
+        index: index,
+      };
+      return finalState
+    } else {
+      if (state.routes.length > action.key) {
+        const stacksLength = state.routes.length - action.key
+        const stacks = state.routes.slice(0, stacksLength)
+        const finalState = {
+          ...state,
+          routes: stacks,
+          index: stacksLength - 1,
+        };
+        return finalState
+      }
+    }
+  }
+  return defaultStateAction(action, state)
+}
+```
+
+* pop到指定页面
+
+> 其实goback()函数，是很容易的就可以做到返回到指定页面，和返回指定层级的页面的，并不像网上其他的文章说的需要改源码啊，或者是需要结合redux才能实现啊，并不是这样的，只需要我们简单的维护下导航的路由栈即可解决问题，这个其实和原生iOS中处理导航的栈管理是一个道理
+
+```
+const Navigator = StackNavigator(RouteConfigs, StackNavigatorConfig)
+
+const defaultStateAction = Navigator.router.getStateForAction;
+
+Navigator.router.getStateForAction = (action, state) => {
+  if (state && action.key && action.type === 'Navigation/BACK') {
+    const desiredRoute = state.routes.find((route) => route.routeName === action.key)
+    if (desiredRoute) {
+      const index = state.routes.indexOf(desiredRoute)
+      const finalState = {
+        ...state,
+        routes: state.routes.slice(0, index + 1),
+        index: index,
+      };
+      return finalState
+    } else {
+      if (state.routes.length > action.key) {
+        const stacksLength = state.routes.length - action.key
+        const stacks = state.routes.slice(0, stacksLength)
+        const finalState = {
+          ...state,
+          routes: stacks,
+          index: stacksLength - 1,
+        };
+        return finalState
+      }
+    }
+  }
+  return defaultStateAction(action, state)
+}
+```
+
+* navigator与抽屉嵌套使用
+
+> navigator与抽屉嵌套使用的方式，示例Demo中已经有具体实现了，这个比较简单，就不做详细解答了
+
+* 导航title 在Android 平台上不居中显示
+> 简书上面的**开发中遇到的问题及注意事项**中有讲解决办法，不过作者还是建议大家将导航栏封装成一个组件，使用自定义的组件灵活性更高
+
+* 双击物理键，退出app（待更新）
+
+* 懒加载tabbar上数据
+
+> 这个懒加载Tab，这个也没有什么好解答的，官方已经给我提供了设置属性，我们只需要设置个属性即可，具体代码如下
+
+```
+const TabNavigatorConfigs = {
+  initialRouteName: 'Home',
+  lazy: true,
+  tabBarOptions: {
+    activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff',
+  }
+}
+```
+
 # 总结
-react-navigation导航组价的API相对较多，如果小伙伴们看完讲解还是不清楚如何使用，作者建议直接运行Demo项目，边调试边理解。
+
+> react-navigation导航组件的API相对较多，如果小伙伴们看完讲解还是不清楚如何使用，建议直接运行Demo项目，边调试边理解。
+
+**针对之前很多同学反映出关于react-navigation 使用上遇到的一些问题，上面基本上都逐一解答了，并且都在示例Demo实战的测试过是可行方案，后期还有其他的小伙伴遇到使用上的问题，欢迎进群讨论，或者是给我简书留言，谢谢大家的支持。**
+
 
 # 简书地址
 [http://www.jianshu.com/p/5c070a302192](http://www.jianshu.com/p/5c070a302192)
