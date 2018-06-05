@@ -6,6 +6,11 @@ import { Text, View, ScrollView} from 'react-native'
 import {Button} from 'react-native-elements'
 class Home extends Component {
 
+  // 或这样
+  static navigationOptions = {
+    title: 'HOME', // 固定标题
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>

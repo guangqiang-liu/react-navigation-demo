@@ -6,6 +6,9 @@ import { Text, View} from 'react-native'
 import {Button} from 'react-native-elements'
 class Setting extends Component {
 
+  static navigationOptions = {
+    title: 'Setting', // 固定标题
+  }
   render() {
     const {navigate} = this.props.navigation
     return (

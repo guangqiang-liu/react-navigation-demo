@@ -54,11 +54,13 @@ const RouteConfigs = {
 const StackNavigatorConfig = {
   initialRouteName: 'Home',
   initialRouteParams: {initPara: '初始页面参数'},
-  navigationOptions: {
-    title: '标题',
-    headerTitleStyle: {fontSize: 18, color: 'red'},
-    headerStyle: {height: 49},
-  },
+
+  // 注意：当我们需要在具体的页面显示具体的页面Title，这时我们需要将这里的设置导航注释，然后在具体的页面配置这个navigationOptions 属性，即可
+  // navigationOptions: {
+  //   title: '标题',
+  //   headerTitleStyle: {fontSize: 18, color: 'red'},
+  //   headerStyle: {height: 49},
+  // },
   paths: 'page/main',
   mode: 'card',
   headerMode: 'screen',

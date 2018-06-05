@@ -6,6 +6,9 @@ import { Text, View} from 'react-native'
 
 class People extends Component {
 
+  static navigationOptions = {
+    title: 'People', // 固定标题
+  }
   render() {
     return (
       <View>

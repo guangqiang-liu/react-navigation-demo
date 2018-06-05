@@ -11,6 +11,9 @@ import {
 
 class Chat extends Component {
 
+  static navigationOptions = {
+    title: 'Chat', // 固定标题
+  }
   render() {
     return (
       <View>
