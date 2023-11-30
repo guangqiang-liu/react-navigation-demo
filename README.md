@@ -6,7 +6,6 @@
 
 # RN技术总结
 * 作者React Native开源项目OneM地址(按照企业开发标准搭建框架完成开发的)：**[https://github.com/guangqiang-liu/OneM](https://github.com/guangqiang-liu/OneM)** (欢迎小伙伴们 **star**)
-* 作者简书主页：包含60多篇RN开发相关的技术文章[http://www.jianshu.com/u/023338566ca5](http://www.jianshu.com/u/023338566ca5) (欢迎小伙伴们：**多多关注**，**多多点赞**)
 * 作者React Native QQ技术交流群：**620792950** 欢迎小伙伴进群交流学习
 * 友情提示：**在开发中有遇到RN相关的技术问题，欢迎小伙伴加入交流群（620792950），在群里提问、互相交流学习。交流群也定期更新最新的RN学习资料给大家，谢谢支持！**
 
@@ -1357,7 +1356,3 @@ const TabNavigatorConfigs = {
 > react-navigation导航组件的API相对较多，如果小伙伴们看完讲解还是不清楚如何使用，建议直接运行Demo项目，边调试边理解。
 
 **针对之前很多同学反映出关于react-navigation 使用上遇到的一些问题，上面基本上都逐一解答了，并且都在示例Demo实战的测试过是可行方案，后期还有其他的小伙伴遇到使用上的问题，欢迎进群讨论，或者是给我简书留言，谢谢大家的支持。**
-
-
-# 简书地址
-[http://www.jianshu.com/p/5c070a302192](http://www.jianshu.com/p/5c070a302192)
